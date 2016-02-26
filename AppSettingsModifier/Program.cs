@@ -12,48 +12,51 @@ namespace AppSettingsModifier
             DebugArgs(args);
             var options = new Options();
 
-            if (CommandLine.Parser.Default.ParseArguments(args, options))
-            {
-                XDocument xmlDoc = new XDocument();
-                try
-                {
-                    xmlDoc = XDocument.Load(options.File);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error loading file {0} {1}.", options.File, ex.Message);
-                    Environment.Exit((int)ExitCode.FileLoadException);
-                }
-
-                try
-                {
-                    var appSettingsNode = xmlDoc.Descendants("appSettings").First();
-                    if (options.Action.ToLower() == "add")
-                    {
-                        appSettingsNode.Add(new XElement("add", new XAttribute("key", options.Key), new XAttribute("value", options.Value)));
-                    }
-                    try
-                    {
-                        xmlDoc.Save(options.File);
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Error saving file {0} {1}.", options.File, ex.Message);
-                        Environment.Exit((int)ExitCode.FileSaveException);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error modifying XML {0}.", ex.Message);
-                    Environment.Exit((int)ExitCode.XmlModifyException);
-                }
-            }
-            else
+            if (!CommandLine.Parser.Default.ParseArguments(args, options))
             {
                 Environment.Exit((int)ExitCode.InvalidArguments);
             }
 
+            ModifyConfig(options);
+
             Environment.Exit((int)ExitCode.Success);
+        }
+
+        private static void ModifyConfig(Options options)
+        {
+            XDocument xmlDoc = new XDocument();
+            try
+            {
+                xmlDoc = XDocument.Load(options.File);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error loading file {0} {1}.", options.File, ex.Message);
+                Environment.Exit((int)ExitCode.FileLoadException);
+            }
+
+            try
+            {
+                var appSettingsNode = xmlDoc.Descendants("appSettings").First();
+                if (options.Action.ToLower() == "add")
+                {
+                    appSettingsNode.Add(new XElement("add", new XAttribute("key", options.Key), new XAttribute("value", options.Value)));
+                }
+                try
+                {
+                    xmlDoc.Save(options.File);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error saving file {0} {1}.", options.File, ex.Message);
+                    Environment.Exit((int)ExitCode.FileSaveException);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error modifying XML {0}.", ex.Message);
+                Environment.Exit((int)ExitCode.XmlModifyException);
+            }
         }
 
         private static void DebugArgs(string[] args)
