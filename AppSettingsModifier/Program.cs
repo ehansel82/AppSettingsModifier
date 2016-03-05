@@ -37,10 +37,18 @@ namespace AppSettingsModifier
 
             try
             {
-                var appSettingsNode = xmlDoc.Descendants("appSettings").First();
+                var appSettingsNode = xmlDoc.Descendants("appSettings").Single();
                 if (options.Action.ToLower() == "add")
                 {
                     appSettingsNode.Add(new XElement("add", new XAttribute("key", options.Key), new XAttribute("value", options.Value)));
+                } else if (options.Action.ToLower() == "modify")
+                {
+                    var modifyNode = appSettingsNode.Descendants("add").Where(x => x.Attribute("key").Value == options.Key).Single();  
+                    modifyNode.Attributes("value").First().Value = options.Value;
+                } else if (options.Action.ToLower() == "remove")
+                {
+                    var removeNode = appSettingsNode.Descendants("add").Where(x => x.Attribute("key").Value == options.Key).Single();
+                    removeNode.Remove();
                 }
                 try
                 {
