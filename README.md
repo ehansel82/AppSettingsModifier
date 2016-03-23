@@ -16,19 +16,22 @@ It requires three command line arguments and accepts one optional parameter.
 -v --value : (optional) The value of the node for add and modify actions. Defaults to empty string.
 
 ## Examples
-* Add the following node to c:\project\web.config <add key="Debug" value="true" /> *
+*Add the following node to c:\project\web.config <add key="Debug" value="true" />*
+
   appsettingsmodifer.exe -a add --key=Debug --value=True --file="C:\project\web.config"
   
-* Modify the existing Version key in c:\project\app.config <add key="Version" value="2.3.2" /> *
+*Modify the existing Version key in c:\project\app.config <add key="Version" value="2.3.2" />*
+
   appsettingsmodifer.exe --action=add -k Version -v 2.3.2 --file="C:\project\app.config"
   
-* Remove the compilation node from c:\project\web.config *
+*Remove the compilation node from c:\project\web.config*
+
   appsettingsmodifer.exe --action=add --key=Debug -f C:\project\web.config
   
 ## Exit Codes
 The app exits with the following error codes (0 exit code indicates success)
 
-+InvalidArguments = 1,
-+FileLoadException = 2,
-+XmlModifyException = 3,
-+FileSaveException = 4
++ InvalidArguments = 1,
++ FileLoadException = 2,
++ XmlModifyException = 3,
++ FileSaveException = 4
