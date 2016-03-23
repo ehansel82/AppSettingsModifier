@@ -37,6 +37,14 @@ namespace AppSettingsModifier
 
             try
             {
+                var action = options.Action.ToLower();
+                var validActions = new string[] { "add", "modify", "remove" };
+                if (validActions.Where( x=> x == action).SingleOrDefault() == null)
+                {
+                    Console.WriteLine("Invalid action");
+                    Environment.Exit((int)ExitCode.InvalidArguments);
+                }
+
                 var appSettingsNode = xmlDoc.Descendants("appSettings").Single();
                 if (options.Action.ToLower() == "add")
                 {
