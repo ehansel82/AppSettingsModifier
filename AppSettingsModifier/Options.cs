@@ -22,7 +22,7 @@ namespace AppSettingsModifier
         /// <summary>
         /// Example "-v TestValue" or "--value=TestValue"
         /// </summary>
-        [Option('v', "value", Required = true,
+        [Option('v', "value", Required = false, DefaultValue = "",
         HelpText = "Value to add to the AppSettings node.")]
         public string Value { get; set; }
 
