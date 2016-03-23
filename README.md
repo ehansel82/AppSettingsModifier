@@ -17,13 +17,13 @@ It requires three command line arguments and accepts one optional parameter.
 
 ## Examples
 *Add the following node to c:\project\web.config <add key="Debug" value="true" />*
-  appsettingsmodifer.exe -a add --key=Debug --value=True --file="C:\project\web.config"
+* appsettingsmodifer.exe -a add --key=Debug --value=True --file="C:\project\web.config"
   
 *Modify the existing Version key in c:\project\app.config <add key="Version" value="2.3.2" />*
-  appsettingsmodifer.exe --action=add -k Version -v 2.3.2 --file="C:\project\app.config"
+* appsettingsmodifer.exe --action=add -k Version -v 2.3.2 --file="C:\project\app.config"
   
 *Remove the compilation node from c:\project\web.config*
-  appsettingsmodifer.exe --action=add --key=Debug -f C:\project\web.config
+* appsettingsmodifer.exe --action=add --key=Debug -f C:\project\web.config
   
 ## Exit Codes
 The app exits with the following error codes (0 exit code indicates success)
