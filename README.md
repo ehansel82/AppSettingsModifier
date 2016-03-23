@@ -23,12 +23,12 @@ AppSettingsModifier.exe -a add --key=Debug --value=True --file="C:\project\web.c
 
 *Modify the existing Version key in c:\project\app.config <add key="Version" value="2.3.2" />*
 
-AppSettingsModifier.exe --action=add -k Version -v 2.3.2 --file="C:\project\app.config
+AppSettingsModifier.exe --action=modify -k Version -v 2.3.2 --file="C:\project\app.config
 
   
 *Remove the compilation node from c:\project\web.config*
 
-AppSettingsModifier.exe --action=add --key=Debug -f C:\project\web.config
+AppSettingsModifier.exe --action=remove --key=Debug -f C:\project\web.config
 
 
   
