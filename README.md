@@ -18,19 +18,17 @@ It requires three command line arguments and accepts one optional parameter.
 ## Examples
 *Add the following node to c:\project\web.config <add key="Debug" value="true" />*
 
-appsettingsmodifer.exe -a add --key=Debug --value=True --file="C:\project\web.config"
+AppSettingsModifier.exe -a add --key=Debug --value=True --file="C:\project\web.config"
 
 
-  
 *Modify the existing Version key in c:\project\app.config <add key="Version" value="2.3.2" />*
 
-appsettingsmodifer.exe --action=add -k Version -v 2.3.2 --file="C:\project\app.config
-
+AppSettingsModifier.exe --action=add -k Version -v 2.3.2 --file="C:\project\app.config
 
   
 *Remove the compilation node from c:\project\web.config*
 
-appsettingsmodifer.exe --action=add --key=Debug -f C:\project\web.config
+AppSettingsModifier.exe --action=add --key=Debug -f C:\project\web.config
 
 
   
@@ -41,3 +39,7 @@ The app exits with the following error codes (0 exit code indicates success)
 + FileLoadException = 2,
 + XmlModifyException = 3,
 + FileSaveException = 4
+
+
+## Dependencies
+CommandLine (nuget) https://github.com/gsscoder/commandline
